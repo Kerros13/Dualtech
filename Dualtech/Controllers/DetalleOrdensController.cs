@@ -182,8 +182,8 @@ namespace Dualtech.Controllers
         {
             try
             {
-                try 
-                {
+                //try 
+                //{
                     var producto = await _context.Producto.FindAsync(detalleOrden.ProductoId);
                     var orden = await _context.Orden.FindAsync(detalleOrden.OrdenId);
                     var cantidad = Convert.ToInt64(detalleOrden.Cantidad);
@@ -221,30 +221,30 @@ namespace Dualtech.Controllers
                         Errors = "[]",
                         data = detalleOrden
                     });
-                }
-                catch (DbUpdateException e)
-                {
-                    if (!ProductoExists(detalleOrden.ProductoId))
-                    {
-                        return Ok(new
-                        {
-                            Success = false,
-                            Message = "El producto ingresado no existe",
-                            Errors = e.Message,
-                            data = "[]"
-                        });
-                    }
-                    else if (!OrdenExists(detalleOrden.OrdenId))
-                    {
-                        return Ok(new
-                        {
-                            Success = false,
-                            Message = "La orden ingresado no existe",
-                            Errors = e.Message,
-                            data = "[]"
-                        });
-                    }
-                }
+                //}
+                //catch (DbUpdateException e)
+                //{
+                //    if (!ProductoExists(detalleOrden.ProductoId))
+                //    {
+                //        return Ok(new
+                //        {
+                //            Success = false,
+                //            Message = "El producto ingresado no existe",
+                //            Errors = e.Message,
+                //            data = "[]"
+                //        });
+                //    }
+                //    else if (!OrdenExists(detalleOrden.OrdenId))
+                //    {
+                //        return Ok(new
+                //        {
+                //            Success = false,
+                //            Message = "La orden ingresado no existe",
+                //            Errors = e.Message,
+                //            data = "[]"
+                //        });
+                //    }
+                //}
             }
             catch (DbUpdateException e)
             {

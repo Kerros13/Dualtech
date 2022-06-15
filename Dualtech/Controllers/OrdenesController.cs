@@ -26,15 +26,14 @@ namespace Dualtech.Controllers
         [Route("~/api/[controller]/getAll")]
         public async Task<ActionResult<IEnumerable<Orden>>> GetOrden()
         {
-         
             return Ok(new
             {
                 Success = true,
                 Message = "",
                 Errors = "[]",
                 data = await _context.Orden.ToListAsync(),
-                //Detalles = await _context.DetalleOrden.FindAsync(Orden.OrdenId)
-            });
+                //Detalles = await _context.DetalleOrden.FindAsync(_context.Orden)
+        });
         }
 
         // GET: api/Ordenes/5
@@ -60,7 +59,8 @@ namespace Dualtech.Controllers
                 Success = true,
                 Message = "",
                 Errors = "[]",
-                data = orden
+                data = orden,
+                Detalles = await _context.DetalleOrden.FindAsync(orden.OrdenId)
             });
         }
 
